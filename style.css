@@ -1,0 +1,247 @@
+
+@font-face {
+    font-family: 'FontBold';
+    src: url('path/to/your/fontbold.woff2') format('woff2');
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    background-color: #000;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    height: 100%;
+    overflow: hidden;
+    cursor: default;
+}
+
+/* A) MAIN TITLE - TOP SECTION */
+#monument {
+    position: absolute;
+    top: 10%; /* CLOSE TO TOP */
+    width: 100%;
+    text-align: center;
+    z-index: 50;
+}
+
+#headline {
+    font-family: 'FontBold', sans-serif;
+    font-size: 4.5rem; /* ← CHANGED TO 4.5rem */
+    color: #fff;
+    margin: 0;
+    line-height: 0.9;
+    text-transform: uppercase;
+}
+
+#signature {
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem; /* ← CHANGED TO 1.4rem */
+    color: #0f0;
+    margin-top: 2em;
+    letter-spacing: 0.1em;
+    line-height: 1.4;
+}
+
+/* C) COMMAND LINE - BELOW SUBTEXT */
+#terminal {
+    padding: 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#prompt {
+    margin-top: 1.5em; /* 10-15px GAP AFTER SUBTEXT */
+    font-size: 1.2rem; /* 20-24px */
+}
+
+#cursor {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* ARCHIVE & ARTIFACTS */
+#archive {
+    display: none;
+    width: 100%;
+    max-width: 800px;
+}
+
+.artifact {
+    margin: 1.5em 0;
+    padding: 0.5em 0;
+    border-bottom: 1px solid #333;
+    transition: all 0.3s ease;
+}
+
+.artifact:hover {
+    color: #fff;
+    border-bottom-color: #0f0;
+    cursor: pointer;
+}
+
+/* MEDIUM IMAGE VIEWER */
+#viewer {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#viewer-container {
+    background: #000;
+    border: 1px solid #0f0;
+    padding: 20px;
+    max-width: 90vw;
+    max-height: 90vh;
+    position: relative;
+}
+
+#viewer-content {
+    max-width: 100%;
+    max-height: 70vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#viewer-content img {
+    max-width: 100%;
+    max-height: 70vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+#viewer-caption {
+    margin-top: 1em;
+    font-family: 'FontBold', sans-serif;
+    text-align: center;
+    font-size: 1.1em;
+    color: #0f0;
+    padding: 0 10px;
+}
+
+#transmit {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 10;
+}
+
+a {
+    color: #0f0;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* MOBILE FIXES */
+@media (max-width: 768px) {
+    #monument {
+        position: relative;
+        margin-bottom: 2rem;
+    }
+
+    #headline {
+        font-size: clamp(2.2rem, 8vw, 3rem) !important; /* RESPONSIVE RANGE */
+        line-height: 1.1;
+    }
+
+    #signature {
+        font-size: clamp(0.9rem, 3.5vw, 1.1rem) !important; /* RESPONSIVE RANGE */
+    }
+
+    #terminal {
+        padding-top: 1rem;
+        height: auto;
+    }
+
+    .artifact {
+        font-size: clamp(1rem, 4vw, 1.2rem) !important; /* RESPONSIVE RANGE */
+        padding: 1rem 0;
+    }
+
+    #transmit {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        text-align: center;
+    }
+
+    #transmit a {
+        font-size: clamp(0.8rem, 3.2vw, 1rem) !important; /* RESPONSIVE RANGE */
+        pointer-events: none;
+        color: #333;
+    }
+}
+
+/* ENSURE TOUCH WORKS ON MOBILE */
+@media (hover: none) and (pointer: coarse) {
+    .artifact {
+        cursor: pointer;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+    
+    #viewer {
+        cursor: pointer;
+    }
+}
+
+/* EMPEROR'S FORTRESS */
+#fortress {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Courier New', monospace;
+}
+
+#fortress-modal {
+    background: #000;
+    border: 2px solid #f00;
+    padding: 30px;
+    text-align: center;
+    color: #f00;
+    max-width: 500px;
+}
+
+#fortress-close {
+    margin-top: 20px;
+    color: #0f0;
+    cursor: pointer;
+}
+
+#fortress-close:hover {
+    color: #fff;
+}
